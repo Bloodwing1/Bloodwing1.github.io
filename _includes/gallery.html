@@ -1,0 +1,2 @@
+{% for image in site.static_files %}{% if image.path contains "assets/WebPics" %}{% if image.extname == ".jpg" or image.extname == ".png" or image.extname == ".gif" %}![Gallery Image]({{ image.path | relative_url }})
+{% endif %}{% endif %}{% endfor %}

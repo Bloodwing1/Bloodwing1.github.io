@@ -1,5 +1,6 @@
 # Web Pics
 A page to showcase my photography.
+still very much in test phase
 
 
 ## Wishlist

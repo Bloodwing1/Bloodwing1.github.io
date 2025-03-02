@@ -1,2 +1,24 @@
-{% for image in site.static_files %}{% if image.path contains "assets/WebPics" %}{% if image.extname == ".jpg" or image.extname == ".png" or image.extname == ".gif" %}![Gallery Image]({{ image.path | relative_url }})
-{% endif %}{% endif %}{% endfor %}
+<div class="gallery">
+  {% for image in site.data.gallery.images %}
+    <!-- Image {{ forloop.index }} -->
+    <div class="image-card">
+      <div class="image-container">
+        <img src="{{ image.path }}" alt="Gallery Image">
+      </div>
+      <div class="description">
+        <h3>{{ image.title }}</h3>
+        <p>{{ image.description }}</p>
+        <div class="camera-settings">
+          <span>{{ image.settings.aperture }}</span>
+          <span>{{ image.settings.shutter_speed }}</span>
+          <span>{{ image.settings.iso }}</span>
+          <span>{{ image.settings.focal_length }}</span>
+        </div>
+        <div class="camera-model">
+          <span class="model">{{ image.camera.model }}</span>
+          <span class="lens">{{ image.camera.lens }}</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

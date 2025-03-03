@@ -26,7 +26,6 @@ images:
       model: "Pentax K-1 Mark II"
       lens: "HD Pentax-FA 35mm F2"
       
-      
   - title: "Van life"
     path: "/assets/WebPics/Web (6 of 14).jpg"
     description: " :)"
@@ -63,7 +62,6 @@ images:
       model: "Pentax Q7"
       lens: "06 Telephoto Zoom"
       
-      
   - title: "Red timber-framed house"
     path: "/assets/WebPics/Web (10 of 14).jpg"
     description: "Just a red House in Tübingen"
@@ -87,7 +85,6 @@ images:
     camera:
       model: "Pentax-K1 Mark II"
       lens: "HD Pentax-FA 35mm F2"
-      
       
   - title: "Tubinga City hall"
     path: "/assets/WebPics/Web (13 of 14).jpg"

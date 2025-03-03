@@ -1,17 +1,6 @@
 # Gallery images data
 images:
-  - title: "Morning Light in the Evening"
-    path: "/assets/WebPics/Web (1 of 14).jpg"
-    description: "Capturing the serene beauty of early morning light as it filters through the landscape."
-    settings:
-      aperture: "f/8"
-      shutter_speed: "1/250s"
-      iso: "ISO 100"
-      focal_length: "24mm"
-    camera:
-      model: "Sony A7R IV"
-      lens: "Sony FE 24-70mm f/2.8 GM"
-      
+
   - title: "Urban Exploration"
     path: "/assets/WebPics/Web (2 of 14).jpg"
     description: "Finding unexpected beauty in the geometry and textures of the urban environment."

@@ -14,65 +14,42 @@ images:
       lens: "Pentax Q 02"
       sensor: "1/1,7 CMOS"
       
-  - title: "Natural Patterns"
+  - title: "Arschkalt"
     path: "/assets/WebPics/Web (3 of 14).jpg"
-    description: "Observing the intricate patterns that emerge in nature's most subtle details."
+    description: ":)"
     settings:
-      aperture: "f/11"
-      shutter_speed: "1/60s"
+      aperture: "f/8"
+      shutter_speed: "1/250s"
       iso: "ISO 200"
-      focal_length: "50mm"
+      focal_length: "35mm"
     camera:
-      model: "Canon EOS R5"
-      lens: "Canon RF 50mm f/1.2L USM"
+      model: "Pentax K-1 Mark II"
+      lens: "HD Pentax-FA 35mm F2"
       
-  - title: "Distant Horizon"
-    path: "/assets/WebPics/Web (4 of 14).jpg"
-    description: "The vastness of the landscape creates a sense of scale and perspective against the horizon."
-    settings:
-      aperture: "f/10"
-      shutter_speed: "1/400s"
-      iso: "ISO 100"
-      focal_length: "24-70mm"
-    camera:
-      model: "Nikon Z7 II"
-      lens: "NIKKOR Z 24-70mm f/2.8 S"
-      
-  - title: "Sunset Silhouettes"
-    path: "/assets/WebPics/Web (5 of 14).jpg"
-    description: "Dramatic silhouettes formed against the vibrant colors of a fading day."
-    settings:
-      aperture: "f/4"
-      shutter_speed: "1/200s"
-      iso: "ISO 400"
-      focal_length: "85mm"
-    camera:
-      model: "Sony A7 III"
-      lens: "Sony FE 85mm f/1.4 GM"
       
   - title: "Hidden Details"
     path: "/assets/WebPics/Web (6 of 14).jpg"
     description: "Sometimes the most compelling compositions are found in the overlooked corners of our world."
     settings:
-      aperture: "f/2.8"
-      shutter_speed: "1/500s"
+      aperture: "f/4"
+      shutter_speed: "1/640s"
       iso: "ISO 200"
+      focal_length: "15mm"
+    camera:
+      model: "Pentax Q7"
+      lens: "06 Telephoto Zoom"
+      
+  - title: "Snack Time"
+    path: "/assets/WebPics/Web (7 of 14).jpg"
+    description: "What's in the fridge?"
+    settings:
+      aperture: "f/3.5"
+      shutter_speed: "1/60s"
+      iso: "ISO 4500"
       focal_length: "35mm"
     camera:
-      model: "Leica Q2"
-      lens: "Summilux 28mm f/1.7 ASPH"
-      
-  - title: "Coastal Reflections"
-    path: "/assets/WebPics/Web (7 of 14).jpg"
-    description: "Water creates a perfect mirror, doubling the impact of an already striking scene."
-    settings:
-      aperture: "f/13"
-      shutter_speed: "1/60s"
-      iso: "ISO 100"
-      focal_length: "16-35mm"
-    camera:
-      model: "Canon EOS R6"
-      lens: "Canon RF 15-35mm f/2.8L IS USM"
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-FA 35mm F2"
       
   - title: "Abstract Form"
     path: "/assets/WebPics/Web (8 of 14).jpg"

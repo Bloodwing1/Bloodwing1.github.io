@@ -95,7 +95,7 @@ images:
       iso: "ISO 400"
       focal_length: "50mm"
     camera:
-       model: "Pentax-K1 Mark II"
+      model: "Pentax-K1 Mark II"
       lens: "Auto Revuenon Lens MC 50mm 1:1.4"
       
   - title: "Free Palestine"
@@ -107,5 +107,5 @@ images:
       iso: "ISO 400"
       focal_length: "50mm"
     camera:
-       model: "Pentax-K1 Mark II"
+      model: "Pentax-K1 Mark II"
       lens: "Auto Revuenon Lens MC 50mm 1:1.4"

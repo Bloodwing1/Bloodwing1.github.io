@@ -1,17 +1,18 @@
 # Gallery images data
 images:
 
-  - title: "Urban Exploration"
+  - title: "Charging drones"
     path: "/assets/WebPics/Web (2 of 14).jpg"
-    description: "Finding unexpected beauty in the geometry and textures of the urban environment."
+    description: "Just a few drones charging near a coal powerplant"
     settings:
-      aperture: "f/5.6"
-      shutter_speed: "1/125s"
-      iso: "ISO 200"
-      focal_length: "35mm"
+      aperture: "f/3.5"
+      shutter_speed: "1/640s"
+      iso: "ISO 100"
+      focal_length: "15mm"
     camera:
-      model: "Fujifilm X-T4"
-      lens: "Fujinon XF 35mm f/1.4 R"
+      model: "Pentax Q7"
+      lens: "Pentax Q 02"
+      sensor: "1/1,7 CMOS"
       
   - title: "Natural Patterns"
     path: "/assets/WebPics/Web (3 of 14).jpg"

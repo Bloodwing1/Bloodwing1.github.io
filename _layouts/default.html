@@ -1,12 +1,96 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f1efe8">
     <title>{{ page.title }} - {{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   </head>
   <body>
     {{ content }}
+
+    <dialog class="lightbox" id="photo-lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-description">
+      <div class="lightbox__frame">
+        <div class="lightbox__toolbar">
+          <p class="lightbox__count" id="lightbox-count" aria-live="polite"></p>
+          <button class="lightbox__close" type="button" aria-label="Close enlarged image">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="lightbox__content">
+          <button class="lightbox__step lightbox__step--previous" type="button" aria-label="Previous image">←</button>
+          <figure class="lightbox__figure">
+            <img id="lightbox-image" alt="">
+            <figcaption class="lightbox__caption">
+              <div>
+                <p class="eyebrow">Capture details</p>
+                <h2 id="lightbox-title"></h2>
+                <p id="lightbox-description"></p>
+              </div>
+              <dl class="lightbox__metadata">
+                <div><dt>Exposure</dt><dd id="lightbox-exposure"></dd></div>
+                <div><dt>Camera</dt><dd id="lightbox-camera"></dd></div>
+                <div><dt>Lens</dt><dd id="lightbox-lens"></dd></div>
+                <div id="lightbox-sensor-row" hidden><dt>Sensor</dt><dd id="lightbox-sensor"></dd></div>
+              </dl>
+            </figcaption>
+          </figure>
+          <button class="lightbox__step lightbox__step--next" type="button" aria-label="Next image">→</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      (() => {
+        const dialog = document.querySelector('#photo-lightbox');
+        const photos = Array.from(document.querySelectorAll('.photo-trigger'));
+        if (!dialog || !photos.length) return;
+
+        const image = document.querySelector('#lightbox-image');
+        const title = document.querySelector('#lightbox-title');
+        const description = document.querySelector('#lightbox-description');
+        const count = document.querySelector('#lightbox-count');
+        const exposure = document.querySelector('#lightbox-exposure');
+        const camera = document.querySelector('#lightbox-camera');
+        const lens = document.querySelector('#lightbox-lens');
+        const sensor = document.querySelector('#lightbox-sensor');
+        const sensorRow = document.querySelector('#lightbox-sensor-row');
+        let activeIndex = 0;
+
+        const show = (index) => {
+          activeIndex = (index + photos.length) % photos.length;
+          const photo = photos[activeIndex];
+          const data = photo.dataset;
+
+          image.src = data.fullSrc;
+          image.alt = data.title;
+          title.textContent = data.title;
+          description.textContent = data.description;
+          count.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`;
+          exposure.textContent = data.exposure;
+          camera.textContent = data.camera;
+          lens.textContent = data.lens;
+          sensor.textContent = data.sensor;
+          sensorRow.hidden = !data.sensor;
+        };
+
+        photos.forEach((photo, index) => {
+          photo.addEventListener('click', () => {
+            show(index);
+            dialog.showModal();
+          });
+        });
+
+        dialog.querySelector('.lightbox__close').addEventListener('click', () => dialog.close());
+        dialog.querySelector('.lightbox__step--previous').addEventListener('click', () => show(activeIndex - 1));
+        dialog.querySelector('.lightbox__step--next').addEventListener('click', () => show(activeIndex + 1));
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft') show(activeIndex - 1);
+          if (event.key === 'ArrowRight') show(activeIndex + 1);
+        });
+      })();
+    </script>
   </body>
 </html>

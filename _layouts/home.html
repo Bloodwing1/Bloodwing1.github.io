@@ -2,7 +2,20 @@
 layout: default
 ---
 
-<header>
-	<h1>{{ site.title }}</h1>
-</header>
-	    {{ content }}
+<main class="site-shell">
+  <header class="masthead">
+    <p class="masthead__eyebrow">MaxTronics / image archive</p>
+    <div class="masthead__title-row">
+      <h1>{{ site.title }}</h1>
+      <p class="masthead__index">Selected photographs<br>01—{{ site.data.gallery.images.size | prepend: '0' | slice: -2, 2 }}</p>
+    </div>
+    <p class="masthead__note">A small collection of observed places, passing weather, and the things in between.</p>
+  </header>
+
+  {{ content }}
+
+  <footer class="site-footer">
+    <span>MaxTronics Images</span>
+    <span>Click any photograph to inspect it closely.</span>
+  </footer>
+</main>

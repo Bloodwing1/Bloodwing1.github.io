@@ -1,25 +1,56 @@
-<div class="gallery">
+<section class="gallery" aria-label="Photography archive">
   {% for image in site.data.gallery.images %}
-    <!-- Image {{ forloop.index }} -->
-    <div class="image-card">
-      <div class="image-container">
-        <img src="{{ image.path }}" alt="Gallery Image">
-      </div>
-      <div class="description">
-        <h3>{{ image.title }}</h3>
-        <p>{{ image.description }}</p>
-        <div class="camera-settings">
-          <span>{{ image.settings.aperture }}</span>
-          <span>{{ image.settings.shutter_speed }}</span>
-          <span>{{ image.settings.iso }}</span>
-          <span>{{ image.settings.focal_length }}</span>
+    <article class="photograph photograph--{{ forloop.index }}">
+      <button
+        class="photo-trigger"
+        type="button"
+        aria-haspopup="dialog"
+        aria-label="Open {{ image.title | escape }} in full size"
+        data-full-src="{{ image.path | relative_url }}"
+        data-title="{{ image.title | escape }}"
+        data-description="{{ image.description | escape }}"
+        data-exposure="{{ image.settings.aperture }} · {{ image.settings.shutter_speed }} · {{ image.settings.iso }} · {{ image.settings.focal_length }}"
+        data-camera="{{ image.camera.model | escape }}"
+        data-lens="{{ image.camera.lens | escape }}"
+        data-sensor="{{ image.camera.sensor | default: '' | escape }}">
+        <span class="photo-trigger__image-wrap">
+          <img
+            src="{{ image.path | relative_url }}"
+            alt="{{ image.title | escape }}"
+            {% if forloop.index > 2 %}loading="lazy"{% endif %}
+            decoding="async">
+          <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
+        </span>
+      </button>
+      <div class="photograph__caption">
+        <div class="photograph__identity">
+          <span class="photograph__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <div>
+            <h2>{{ image.title }}</h2>
+            <p>{{ image.description }}</p>
+          </div>
         </div>
-        <div class="camera-model">
-          <span class="model">{{ image.camera.model }}</span>
-          <span class="lens">{{ image.camera.lens }}</span>
-          <span class="sensor">{{ image.camera.sensor }}</span>
-        </div>
+        <dl class="capture-details">
+          <div class="capture-details__exposure">
+            <dt>Settings</dt>
+            <dd>{{ image.settings.aperture }} <span>/</span> {{ image.settings.shutter_speed }} <span>/</span> {{ image.settings.iso }} <span>/</span> {{ image.settings.focal_length }}</dd>
+          </div>
+          <div>
+            <dt>Camera</dt>
+            <dd>{{ image.camera.model }}</dd>
+          </div>
+          <div>
+            <dt>Lens</dt>
+            <dd>{{ image.camera.lens }}</dd>
+          </div>
+          {% if image.camera.sensor %}
+            <div>
+              <dt>Sensor</dt>
+              <dd>{{ image.camera.sensor }}</dd>
+            </div>
+          {% endif %}
+        </dl>
       </div>
-    </div>
+    </article>
   {% endfor %}
-</div>
+</section>

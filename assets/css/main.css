@@ -1,7 +1,7 @@
 :root {
   --paper: #595959;
   --ink: #171815;
-  --muted: #62645e;
+  --muted: #ffffff;
   --line: #c9c8c0;
   --dark: #171815;
   --light: #f8f7f2;
@@ -224,7 +224,7 @@ h1 {
   height: 2rem;
 }
 
-.lightbox__count { margin: 0; color: #b6b7af; }
+.lightbox__count { margin: 0; color: var(--muted); }
 
 .lightbox__close,
 .lightbox__step {
@@ -272,11 +272,11 @@ h1 {
   padding-top: .9rem;
 }
 
-.eyebrow { margin-bottom: .25rem; color: #b6b7af; }
+.eyebrow { margin-bottom: .25rem; color: var(--muted); }
 .lightbox h2 { margin-bottom: .18rem; font-size: clamp(1.5rem, 3vw, 2.45rem); line-height: .95; }
-.lightbox__caption > div > p:last-child { max-width: 60ch; margin-bottom: 0; color: #c5c5bd; font-size: .83rem; }
+.lightbox__caption > div > p:last-child { max-width: 60ch; margin-bottom: 0; color: var(--muted); font-size: .83rem; }
 .lightbox__metadata { align-self: end; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.lightbox__metadata dt { color: #9c9e96; }
+.lightbox__metadata dt { color: var(--muted); }
 .lightbox__metadata dd { color: var(--light); }
 
 @media (max-width: 760px) {

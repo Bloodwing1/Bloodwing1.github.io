@@ -11,7 +11,7 @@ permalink: /ai-usage/
 
   <section class="disclaimer__block">
     <h2>The code</h2>
-    <p>This website was <em>vibe coded</em>. by me. The layout, the styles, the lightbox — all built by AI and prompting. I supplied the "taste" decisions, a language model supplied the coding.</p>
+    <p>This website was <em>vibe coded</em> by my brother and by me. The layout, the styles, the lightbox — all built by AI and prompting. I supplied the "taste" decisions, a language model supplied the coding.</p>
   </section>
 
   <section class="disclaimer__block">

@@ -4,3 +4,5 @@
 .sass-cache
 _site
 .DS_Store
+_preview.html
+_ai-usage-preview.html

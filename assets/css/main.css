@@ -279,6 +279,42 @@ h1 {
 .lightbox__metadata dt { color: var(--muted); }
 .lightbox__metadata dd { color: var(--light); }
 
+.ai-badge {
+  display: inline-block;
+  padding: .32rem .85rem;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: .69rem;
+  letter-spacing: .065em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.ai-badge:hover { border-color: var(--muted); background: var(--muted); color: var(--ink); }
+.ai-badge:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+.disclaimer { width: min(100% - 3rem, 44rem); padding: 4rem 0 5rem; }
+.disclaimer h1 {
+  margin: .4rem 0 1.4rem;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: .9;
+}
+.disclaimer__lead { margin-bottom: 2.6rem; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.2rem); }
+.disclaimer__block { margin-bottom: 2.2rem; }
+.disclaimer__block h2 {
+  margin-bottom: .45rem;
+  font-family: Iowan Old Style, "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+}
+.disclaimer__block p { margin-bottom: 0; color: var(--light); line-height: 1.55; }
+.disclaimer .ai-badge { margin-top: .4rem; }
+
 @media (max-width: 760px) {
   .site-shell { width: min(100% - 2rem, var(--max-width)); padding-top: 1rem; }
   .masthead { padding-bottom: 3rem; }
@@ -303,6 +339,8 @@ h1 {
   .site-footer { display: block; }
   .site-footer span { display: block; }
   .site-footer span + span { margin-top: .35rem; }
+  .site-footer .ai-badge { margin-top: .9rem; }
+  .disclaimer { padding: 2.5rem 0 4rem; }
   .lightbox__frame { padding: 1rem; }
   .lightbox__content { grid-template-columns: 2rem minmax(0, 1fr) 2rem; }
   .lightbox__step { font-size: 1.2rem; }

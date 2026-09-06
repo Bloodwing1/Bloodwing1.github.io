@@ -1,111 +1,140 @@
-# Gallery images data
+# Page 1 — current set (images in assets/WebPics2)
 images:
 
-  - title: "Charging drones"
-    path: "/assets/WebPics/Web (2 of 14).jpg"
-    description: "Just a few drones charging near a coal powerplant"
+  - title: "I'm so Lucky :)"
+    path: "/assets/WebPics2/1F16F1E8-E04E-439E-8C7B-44CFB8414A5E.webp"
+    description: "i got a very nice gift :) 14 rolls of Lucky c200"
+    date: "2026-05-16"
+    width: 1350
+    height: 2400
     settings:
-      aperture: "f/3.5"
-      shutter_speed: "1/640s"
-      iso: "ISO 100"
-      focal_length: "15mm"
+      aperture: "f/1.5"
+      shutter_speed: "1/63s"
+      iso: "ISO 32"
+      focal_length: "5.7mm"
     camera:
-      model: "Pentax Q7"
-      lens: "Pentax Q 02"
-      sensor: "1/1,7 CMOS"
-      
-  - title: "Arschkalt"
-    path: "/assets/WebPics/Web (3 of 14).jpg"
-    description: ":)"
+      model: "iPhone 13 Pro"
+      lens: "Main camera 5.7mm f/1.5"
+
+  - title: "Schachblume"
+    path: "/assets/WebPics2/MBS_4149.webp"
+    description: "Fritillaria meleagris"
+    date: "2026-04-18"
+    width: 1602
+    height: 2400
     settings:
-      aperture: "f/8"
-      shutter_speed: "1/250s"
-      iso: "ISO 200"
-      focal_length: "35mm"
-    camera:
-      model: "Pentax K-1 Mark II"
-      lens: "HD Pentax-FA 35mm F2"
-      
-  - title: "Van life"
-    path: "/assets/WebPics/Web (6 of 14).jpg"
-    description: " :)"
-    settings:
-      aperture: "f/4"
-      shutter_speed: "1/640s"
-      iso: "ISO 200"
-      focal_length: "15mm"
-    camera:
-      model: "Pentax Q7"
-      lens: "06 Telephoto Zoom"
-      
-  - title: "Snack Time"
-    path: "/assets/WebPics/Web (7 of 14).jpg"
-    description: "What's in the fridge?"
-    settings:
-      aperture: "f/3.5"
-      shutter_speed: "1/60s"
-      iso: "ISO 4500"
-      focal_length: "35mm"
-    camera:
-      model: "Pentax-K1 Mark II"
-      lens: "HD Pentax-FA 35mm F2"
-      
-  - title: "Tit Pic"
-    path: "/assets/WebPics/Web (8 of 14).jpg"
-    description: "Just a cute little Kohlmeise"
-    settings:
-      aperture: "f/2.8"
-      shutter_speed: "1/500s"
-      iso: "ISO 400"
-      focal_length: "44mm"
-    camera:
-      model: "Pentax Q7"
-      lens: "06 Telephoto Zoom"
-      
-  - title: "Red timber-framed house"
-    path: "/assets/WebPics/Web (10 of 14).jpg"
-    description: "Just a red House in Tübingen"
-    settings:
-      aperture: "f/3.2"
+      aperture: "f/6.7"
       shutter_speed: "1/200s"
       iso: "ISO 200"
-      focal_length: "19mm"
-    camera:
-      model: "Lumix-GX7"
-      lens: "Sigma 19mm F2,8 DN Art"
-      
-  - title: "Guess the weather"
-    path: "/assets/WebPics/Web (11 of 14).jpg"
-    description: "Insert Rihanna reference here"
-    settings:
-      aperture: "f/4"
-      shutter_speed: "1/90s"
-      iso: "ISO 2200"
-      focal_length: "35mm"
+      focal_length: "90mm"
     camera:
       model: "Pentax-K1 Mark II"
-      lens: "HD Pentax-FA 35mm F2"
-      
-  - title: "Tubinga City hall"
-    path: "/assets/WebPics/Web (13 of 14).jpg"
-    description: "It's so ugly it's kinda cute. (this is a stitched panorama image)"
+      lens: "Tamron 90mm with extension tube"
+
+  - title: "commute"
+    path: "/assets/WebPics2/MBS_0319.webp"
+    description: " "
+    date: "2025-12-21"
+    width: 2400
+    height: 2400
+    settings:
+      aperture: "f/3.2"
+      shutter_speed: "1/125s"
+      iso: "ISO 2000"
+      focal_length: "24mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-D FA 24-70mm F2.8"
+
+  - title: "Barcelona"
+    path: "/assets/WebPics2/MBS_0905.webp"
+    description: "Right moment right time"
+    date: "2025-12-31"
+    width: 2400
+    height: 1602
+    settings:
+      aperture: "f/5.6"
+      shutter_speed: "1/800s"
+      iso: "ISO 200"
+      focal_length: "24mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-D FA 24-70mm F2.8"
+
+  - title: "Photoshoot prep"
+    path: "/assets/WebPics2/MBS_2499.webp"
+    description: "Getting ready for a photoshoot"
+    date: "2026-02-24"
+    width: 2400
+    height: 1920
+    settings:
+      aperture: "f/7.1"
+      shutter_speed: "1/160s"
+      iso: "ISO 200"
+      focal_length: "50mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "smc Pentax-FA 50mm F1.4"
+
+  - title: "the shoot"
+    path: "/assets/WebPics2/MBS_2784.webp"
+    description: "Red filter and red strobe"
+    date: "2026-02-24"
+    width: 2400
+    height: 1602
+    settings:
+      aperture: "f/2.2"
+      shutter_speed: "1/125s"
+      iso: "ISO 100"
+      focal_length: "50mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "smc Pentax-FA 50mm F1.4"
+
+  - title: "Angel"
+    path: "/assets/WebPics2/MBS_4720.webp"
+    description: "some casual light painting"
+    date: "2026-05-03"
+    width: 2400
+    height: 1602
+    settings:
+      aperture: "f/5.6"
+      shutter_speed: "20s"
+      iso: "ISO 400"
+      focal_length: "18mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-D FA 15-30mm F2.8"
+
+  - title: "Arc de triomf"
+    path: "/assets/WebPics2/MBS_5359.webp"
+    description: "dont know the camera tho"
+    date: "2026-05-09"
+    width: 2400
+    height: 1623
     settings:
       aperture: "f/?"
-      shutter_speed: "1/180s"
-      iso: "ISO 400"
-      focal_length: "50mm"
+      shutter_speed: "1/?"
+      iso: "ISO 200"
+      focal_length: "?mm"
+      film: "Lucky C200"
     camera:
-      model: "Pentax-K1 Mark II"
-      lens: "Auto Revuenon Lens MC 50mm 1:1.4"
-      
-  - title: "Free Palestine"
-    path: "/assets/WebPics/Web (14 of 14).jpg"
-    description: "They were very loud and energetic"
+      model: "?"
+      lens: "?"
+
+  - title: "Tübingen Pano"
+    path: "/assets/WebPics2/MBS_4796.webp"
+    wide: true
+    description: "one of the few acceptable shots from this roll"
+    date: "2026-05-01"
+    width: 2400
+    height: 1350
     settings:
-      aperture: "f/4"
-      shutter_speed: "1/45s"
-      iso: "ISO 400"
-      focal_length: "50mm"
+      aperture: "f/11"
+      shutter_speed: "1/100s"
+      iso: "ISO 200"
+      focal_length: "30mm"
+      film: "Kodak Gold 200"
     camera:
-      model: "Pentax-K1 Mark II"
-      lens: "Auto Revuenon Lens MC 50mm 1:1.4"
+      model: "Sprocket Rocket"
+      lens: "Built in"

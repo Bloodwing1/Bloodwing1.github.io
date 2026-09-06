@@ -1,56 +1,150 @@
 <section class="gallery" aria-label="Photography archive">
-  {% for image in site.data.gallery.images %}
-    <article class="photograph photograph--{{ forloop.index }}">
-      <button
-        class="photo-trigger"
-        type="button"
-        aria-haspopup="dialog"
-        aria-label="Open {{ image.title | escape }} in full size"
-        data-full-src="{{ image.path | relative_url }}"
-        data-title="{{ image.title | escape }}"
-        data-description="{{ image.description | escape }}"
-        data-exposure="{{ image.settings.aperture }} · {{ image.settings.shutter_speed }} · {{ image.settings.iso }} · {{ image.settings.focal_length }}"
-        data-camera="{{ image.camera.model | escape }}"
-        data-lens="{{ image.camera.lens | escape }}"
-        data-sensor="{{ image.camera.sensor | default: '' | escape }}">
-        <span class="photo-trigger__image-wrap">
-          <img
-            src="{{ image.path | relative_url }}"
-            alt="{{ image.title | escape }}"
-            {% if forloop.index > 2 %}loading="lazy"{% endif %}
-            decoding="async">
-          <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
-        </span>
-      </button>
-      <div class="photograph__caption">
-        <div class="photograph__identity">
-          <span class="photograph__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-          <div>
-            <h2>{{ image.title }}</h2>
-            <p>{{ image.description }}</p>
-          </div>
+  {% assign photo_offset = include.offset | default: 0 %}
+  {% assign row_open = false %}
+  {% for image in include.images %}
+    {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
+    {% if image.wide %}
+      {% if row_open %}
         </div>
-        <dl class="capture-details">
-          <div class="capture-details__exposure">
-            <dt>Settings</dt>
-            <dd>{{ image.settings.aperture }} <span>/</span> {{ image.settings.shutter_speed }} <span>/</span> {{ image.settings.iso }} <span>/</span> {{ image.settings.focal_length }}</dd>
-          </div>
-          <div>
-            <dt>Camera</dt>
-            <dd>{{ image.camera.model }}</dd>
-          </div>
-          <div>
-            <dt>Lens</dt>
-            <dd>{{ image.camera.lens }}</dd>
-          </div>
-          {% if image.camera.sensor %}
-            <div>
-              <dt>Sensor</dt>
-              <dd>{{ image.camera.sensor }}</dd>
+        {% assign row_open = false %}
+      {% endif %}
+      <div class="gallery-row">
+        <article class="photograph" style="flex: {{ ar }} 1 0%">
+          <button
+            class="photo-trigger"
+            type="button"
+            aria-haspopup="dialog"
+            aria-label="Open {{ image.title | escape }} in full size"
+            data-full-src="{{ image.path | relative_url }}"
+            data-title="{{ image.title | escape }}"
+            data-description="{{ image.description | escape }}"
+            data-exposure="{{ image.settings.aperture }} · {{ image.settings.shutter_speed }} · {{ image.settings.iso }} · {{ image.settings.focal_length }}"
+            data-camera="{{ image.camera.model | escape }}"
+            data-lens="{{ image.camera.lens | escape }}"
+            data-sensor="{{ image.camera.sensor | default: '' | escape }}"
+            data-date="{{ image.date | default: '' | escape }}">
+            <span class="photo-trigger__image-wrap">
+              <img
+                src="{{ image.path | relative_url }}"
+                alt="{{ image.title | escape }}"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                {% if forloop.index > 2 %}loading="lazy"{% endif %}
+                decoding="async">
+              <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
+            </span>
+          </button>
+          <div class="photograph__caption">
+            <div class="photograph__identity">
+              <span class="photograph__number">{{ forloop.index | plus: photo_offset | prepend: '0' | slice: -2, 2 }}</span>
+              <div>
+                <h2>{{ image.title }}</h2>
+                <p>{{ image.description }}</p>
+              </div>
             </div>
-          {% endif %}
-        </dl>
+            <dl class="capture-details">
+              <div class="capture-details__exposure">
+                <dt>Settings</dt>
+                <dd>{{ image.settings.aperture }} <span>/</span> {{ image.settings.shutter_speed }} <span>/</span> {{ image.settings.iso }} <span>/</span> {{ image.settings.focal_length }}{% if image.settings.film %} <span>/</span> {{ image.settings.film }}{% endif %}</dd>
+              </div>
+              <div>
+                <dt>Camera</dt>
+                <dd>{{ image.camera.model }}</dd>
+              </div>
+              <div>
+                <dt>Lens</dt>
+                <dd>{{ image.camera.lens }}</dd>
+              </div>
+              {% if image.camera.sensor %}
+                <div>
+                  <dt>Sensor</dt>
+                  <dd>{{ image.camera.sensor }}</dd>
+                </div>
+              {% endif %}
+              {% if image.date %}
+                <div>
+                  <dt>Date</dt>
+                  <dd>{{ image.date }}</dd>
+                </div>
+              {% endif %}
+            </dl>
+          </div>
+        </article>
       </div>
-    </article>
+    {% else %}
+      {% if row_open == false %}
+        <div class="gallery-row">
+        {% assign row_open = true %}
+      {% endif %}
+      <article class="photograph" style="flex: {{ ar }} 1 0%">
+        <button
+          class="photo-trigger"
+          type="button"
+          aria-haspopup="dialog"
+          aria-label="Open {{ image.title | escape }} in full size"
+          data-full-src="{{ image.path | relative_url }}"
+          data-title="{{ image.title | escape }}"
+          data-description="{{ image.description | escape }}"
+          data-exposure="{{ image.settings.aperture }} · {{ image.settings.shutter_speed }} · {{ image.settings.iso }} · {{ image.settings.focal_length }}"
+          data-camera="{{ image.camera.model | escape }}"
+          data-lens="{{ image.camera.lens | escape }}"
+          data-sensor="{{ image.camera.sensor | default: '' | escape }}"
+          data-date="{{ image.date | default: '' | escape }}">
+          <span class="photo-trigger__image-wrap">
+            <img
+              src="{{ image.path | relative_url }}"
+              alt="{{ image.title | escape }}"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+              {% if forloop.index > 2 %}loading="lazy"{% endif %}
+              decoding="async">
+            <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
+          </span>
+        </button>
+        <div class="photograph__caption">
+          <div class="photograph__identity">
+            <span class="photograph__number">{{ forloop.index | plus: photo_offset | prepend: '0' | slice: -2, 2 }}</span>
+            <div>
+              <h2>{{ image.title }}</h2>
+              <p>{{ image.description }}</p>
+            </div>
+          </div>
+          <dl class="capture-details">
+            <div class="capture-details__exposure">
+              <dt>Settings</dt>
+              <dd>{{ image.settings.aperture }} <span>/</span> {{ image.settings.shutter_speed }} <span>/</span> {{ image.settings.iso }} <span>/</span> {{ image.settings.focal_length }}{% if image.settings.film %} <span>/</span> {{ image.settings.film }}{% endif %}</dd>
+            </div>
+            <div>
+              <dt>Camera</dt>
+              <dd>{{ image.camera.model }}</dd>
+            </div>
+            <div>
+              <dt>Lens</dt>
+              <dd>{{ image.camera.lens }}</dd>
+            </div>
+            {% if image.camera.sensor %}
+              <div>
+                <dt>Sensor</dt>
+                <dd>{{ image.camera.sensor }}</dd>
+              </div>
+            {% endif %}
+            {% if image.date %}
+              <div>
+                <dt>Date</dt>
+                <dd>{{ image.date }}</dd>
+              </div>
+            {% endif %}
+          </dl>
+        </div>
+      </article>
+      {% assign row_pos = forloop.index0 | modulo: 2 %}
+      {% if row_pos == 1 or forloop.last %}
+        </div>
+        {% assign row_open = false %}
+      {% endif %}
+    {% endif %}
   {% endfor %}
+  {% if row_open %}
+    </div>
+  {% endif %}
 </section>

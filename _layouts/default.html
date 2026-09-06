@@ -31,6 +31,7 @@
                 <div><dt>Camera</dt><dd id="lightbox-camera"></dd></div>
                 <div><dt>Lens</dt><dd id="lightbox-lens"></dd></div>
                 <div id="lightbox-sensor-row" hidden><dt>Sensor</dt><dd id="lightbox-sensor"></dd></div>
+                <div id="lightbox-date-row" hidden><dt>Date</dt><dd id="lightbox-date"></dd></div>
               </dl>
             </figcaption>
           </figure>
@@ -54,6 +55,8 @@
         const lens = document.querySelector('#lightbox-lens');
         const sensor = document.querySelector('#lightbox-sensor');
         const sensorRow = document.querySelector('#lightbox-sensor-row');
+        const date = document.querySelector('#lightbox-date');
+        const dateRow = document.querySelector('#lightbox-date-row');
         let activeIndex = 0;
 
         const show = (index) => {
@@ -71,6 +74,8 @@
           lens.textContent = data.lens;
           sensor.textContent = data.sensor;
           sensorRow.hidden = !data.sensor;
+          date.textContent = data.date;
+          dateRow.hidden = !data.date;
         };
 
         photos.forEach((photo, index) => {

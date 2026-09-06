@@ -7,7 +7,20 @@ layout: default
     <p class="masthead__eyebrow">MaxTronics / image archive</p>
     <div class="masthead__title-row">
       <h1>{{ site.title }}</h1>
-      <p class="masthead__index">Selected photographs<br>01—{{ site.data.gallery.images.size | prepend: '0' | slice: -2, 2 }}</p>
+      <div class="masthead__side">
+        <nav class="pager" aria-label="Gallery pages">
+          <a href="{{ "/" | relative_url }}" {% unless page.permalink == "/archive/" %}aria-current="page"{% endunless %}>01 &mdash; Current</a>
+          <a href="{{ "/archive/" | relative_url }}" {% if page.permalink == "/archive/" %}aria-current="page"{% endif %}>02 &mdash; Archive</a>
+        </nav>
+        {% assign images = site.data[page.data_source].images %}
+        {% if page.data_source == "gallery" %}
+          {% assign first_number = site.data.archive.images.size | plus: 1 %}
+        {% else %}
+          {% assign first_number = 1 %}
+        {% endif %}
+        {% assign last_number = first_number | plus: images.size | minus: 1 %}
+        <p class="masthead__index">Selected photographs<br>{{ first_number | prepend: '0' | slice: -2, 2 }}&mdash;{{ last_number | prepend: '0' | slice: -2, 2 }}</p>
+      </div>
     </div>
     <p class="masthead__note">A small collection of observed places, passing weather, and the things in between.</p>
   </header>

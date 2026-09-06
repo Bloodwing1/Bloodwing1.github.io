@@ -6,3 +6,5 @@ _site
 .DS_Store
 _preview.html
 _ai-usage-preview.html
+preview.html
+preview-archive.html

@@ -12,50 +12,70 @@
     {% for p in site.data.featured.past %}{% assign ordered_paths = ordered_paths | push: p %}{% endfor %}
   {% endif %}
 
-  {% assign row_open = false %}
-  {% assign rendered = 0 %}
-
+  {% assign pool = "" | split: "|" %}
   {% if include.featured_first %}
     {% for p in ordered_paths %}
-      {% for image in include.images %}
-        {% if image.path == p %}
-          {% if row_open == false %}<div class="gallery-row">{% assign row_open = true %}{% endif %}
-          {% assign num = forloop.index %}
-          {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
-          {% if rendered > 1 %}{% assign lazy = true %}{% else %}{% assign lazy = false %}{% endif %}
-          {% include photograph.html image=image number=num ar=ar lazy=lazy %}
-          {% assign rendered = rendered | plus: 1 %}
-          {% assign mod = rendered | modulo: 2 %}
-          {% if mod == 0 %}</div>{% assign row_open = false %}{% endif %}
-        {% endif %}
-      {% endfor %}
+      {% for image in include.images %}{% if image.path == p %}{% assign pool = pool | push: image %}{% endif %}{% endfor %}
     {% endfor %}
   {% endif %}
-
   {% for image in include.images %}
+    {% if ordered_paths contains image.path %}{% continue %}{% endif %}
     {% assign i = forloop.index0 %}
-    {% unless ordered_paths contains image.path %}
-      {% if i >= start_idx and i < end_idx %}
-        {% if image.wide %}
-          {% if row_open %}</div>{% assign row_open = false %}{% endif %}
-          {% assign num = forloop.index %}
-          {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
-          {% if rendered > 1 %}{% assign lazy = true %}{% else %}{% assign lazy = false %}{% endif %}
-          {% include photograph.html image=image number=num ar=ar lazy=lazy %}
-          {% assign rendered = rendered | plus: 1 %}
-        {% else %}
-          {% if row_open == false %}<div class="gallery-row">{% assign row_open = true %}{% endif %}
-          {% assign num = forloop.index %}
-          {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
-          {% if rendered > 1 %}{% assign lazy = true %}{% else %}{% assign lazy = false %}{% endif %}
-          {% include photograph.html image=image number=num ar=ar lazy=lazy %}
-          {% assign rendered = rendered | plus: 1 %}
-          {% assign mod = rendered | modulo: 2 %}
-          {% if mod == 0 %}</div>{% assign row_open = false %}{% endif %}
-        {% endif %}
-      {% endif %}
-    {% endunless %}
+    {% if i >= start_idx and i < end_idx %}{% assign pool = pool | push: image %}{% endif %}
   {% endfor %}
 
+  {% assign portraits = "" | split: "|" %}
+  {% assign partners = "" | split: "|" %}
+  {% assign wides = "" | split: "|" %}
+  {% for image in pool %}
+    {% if image.wide %}
+      {% assign wides = wides | push: image %}
+    {% else %}
+      {% assign ar = image.width | times: 1.0 | divided_by: image.height %}
+      {% if ar < 1 %}
+        {% assign portraits = portraits | push: image %}
+      {% else %}
+        {% assign partners = partners | push: image %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign seq = "" | split: "|" %}
+  {% assign pi = 0 %}
+  {% assign oi = 0 %}
+  {% assign pcount = portraits.size %}
+  {% assign ocount = partners.size %}
+  {% assign total = pcount | plus: ocount %}
+  {% for n in (1..total) %}
+    {% if pi < pcount and oi < ocount %}
+      {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
+      {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
+    {% elsif pi < pcount %}
+      {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
+    {% else %}
+      {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign row_open = false %}
+  {% assign rendered = 0 %}
+  {% for image in seq %}
+    {% assign num = 0 %}
+    {% for im in include.images %}{% if im.path == image.path %}{% assign num = forloop.index %}{% endif %}{% endfor %}
+    {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
+    {% if rendered > 1 %}{% assign lazy = true %}{% else %}{% assign lazy = false %}{% endif %}
+    {% if row_open == false %}<div class="gallery-row">{% assign row_open = true %}{% endif %}
+    {% include photograph.html image=image number=num ar=ar lazy=lazy %}
+    {% assign rendered = rendered | plus: 1 %}
+    {% assign mod = rendered | modulo: 2 %}
+    {% if mod == 0 %}</div>{% assign row_open = false %}{% endif %}
+  {% endfor %}
+  {% for image in wides %}
+    {% if row_open %}</div>{% assign row_open = false %}{% endif %}
+    {% assign num = 0 %}
+    {% for im in include.images %}{% if im.path == image.path %}{% assign num = forloop.index %}{% endif %}{% endfor %}
+    {% assign ar = image.width | times: 1.0 | divided_by: image.height | round: 3 %}
+    {% include photograph.html image=image number=num ar=ar lazy=lazy %}
+  {% endfor %}
   {% if row_open %}</div>{% endif %}
 </section>

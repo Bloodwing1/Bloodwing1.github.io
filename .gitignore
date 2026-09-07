@@ -8,4 +8,6 @@ _preview.html
 _ai-usage-preview.html
 preview.html
 preview-archive.html
-preview-archive2.html
+preview-archive2.htmlserve.bat
+serve.log
+serve.err

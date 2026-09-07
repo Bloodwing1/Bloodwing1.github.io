@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Maxotronics Photography"
+title: "Photography"
 page_id: today
 ---
 

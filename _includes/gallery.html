@@ -45,17 +45,30 @@
   {% assign oi = 0 %}
   {% assign pcount = portraits.size %}
   {% assign ocount = partners.size %}
-  {% assign total = pcount | plus: ocount %}
-  {% for n in (1..total) %}
-    {% if pi < pcount and oi < ocount %}
+  {% if pi < pcount and oi < ocount %}
+    {% assign mixed = pcount | at_least: ocount %}
+    {% if mixed > pcount %}{% assign mixed = pcount %}{% endif %}
+    {% for n in (1..mixed) %}
       {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
       {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
-    {% elsif pi < pcount %}
+    {% endfor %}
+  {% endif %}
+  {% if pi < pcount %}
+    {% for n in (1..portraits.size) %}
+      {% if pi >= pcount %}{% break %}{% endif %}
       {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
-    {% else %}
+      {% if pi >= pcount %}{% break %}{% endif %}
+      {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
+    {% endfor %}
+  {% endif %}
+  {% if oi < ocount %}
+    {% for n in (1..partners.size) %}
+      {% if oi >= ocount %}{% break %}{% endif %}
       {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
-    {% endif %}
-  {% endfor %}
+      {% if oi >= ocount %}{% break %}{% endif %}
+      {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
+    {% endfor %}
+  {% endif %}
 
   {% assign row_open = false %}
   {% assign rendered = 0 %}

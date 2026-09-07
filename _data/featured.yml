@@ -1,8 +1,7 @@
 # Picture of the day
 #
 # image: path of the currently featured photo (must match a `path` in gallery.yml).
-# note:  short thought shown next to the settings — only while this photo is featured.
-#        Write "" to show no note.
+# note:  Write whatever you want between the quotes, or note: "" to show nothing:
 # past:  photos that were picture of the day before, newest first.
 #        They stay pinned to the top of the Archive page.
 #
@@ -10,5 +9,5 @@
 # `image`, and write a fresh `note`.
 
 image: "/assets/WebPics2/MBS_7640.webp"
-note: "test"
+note: "This is a 'cooked' image of a night scene. i am experimenting with a LR preset to get this effect. on another note. thats not dust on your screen. those are stars :)"
 past: []

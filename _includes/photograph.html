@@ -1,0 +1,61 @@
+<article class="photograph" style="flex: {{ include.ar }} 1 0%">
+  <button
+    class="photo-trigger"
+    type="button"
+    aria-haspopup="dialog"
+    aria-label="Open {{ include.image.title | escape }} in full size"
+    data-full-src="{{ include.image.path | relative_url }}"
+    data-title="{{ include.image.title | escape }}"
+    data-description="{{ include.image.description | escape }}"
+    data-exposure="{{ include.image.settings.aperture }} · {{ include.image.settings.shutter_speed }} · {{ include.image.settings.iso }} · {{ include.image.settings.focal_length }}"
+    data-camera="{{ include.image.camera.model | escape }}"
+    data-lens="{{ include.image.camera.lens | escape }}"
+    data-sensor="{{ include.image.camera.sensor | default: '' | escape }}"
+    data-date="{{ include.image.date | default: '' | escape }}">
+    <span class="photo-trigger__image-wrap">
+      <img
+        src="{{ include.image.path | relative_url }}"
+        alt="{{ include.image.title | escape }}"
+        width="{{ include.image.width }}"
+        height="{{ include.image.height }}"
+        {% if include.lazy %}loading="lazy"{% endif %}
+        decoding="async">
+      <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
+    </span>
+  </button>
+  <div class="photograph__caption">
+    <div class="photograph__identity">
+      <span class="photograph__number">{{ include.number | prepend: '0' | slice: -2, 2 }}</span>
+      <div>
+        <h2>{{ include.image.title }}</h2>
+        <p>{{ include.image.description }}</p>
+      </div>
+    </div>
+    <dl class="capture-details">
+      <div class="capture-details__exposure">
+        <dt>Settings</dt>
+        <dd>{{ include.image.settings.aperture }} <span>/</span> {{ include.image.settings.shutter_speed }} <span>/</span> {{ include.image.settings.iso }} <span>/</span> {{ include.image.settings.focal_length }}{% if include.image.settings.film %} <span>/</span> {{ include.image.settings.film }}{% endif %}</dd>
+      </div>
+      <div>
+        <dt>Camera</dt>
+        <dd>{{ include.image.camera.model }}</dd>
+      </div>
+      <div>
+        <dt>Lens</dt>
+        <dd>{{ include.image.camera.lens }}</dd>
+      </div>
+      {% if include.image.camera.sensor %}
+        <div>
+          <dt>Sensor</dt>
+          <dd>{{ include.image.camera.sensor }}</dd>
+        </div>
+      {% endif %}
+      {% if include.image.date %}
+        <div>
+          <dt>Date</dt>
+          <dd>{{ include.image.date }}</dd>
+        </div>
+      {% endif %}
+    </dl>
+  </div>
+</article>

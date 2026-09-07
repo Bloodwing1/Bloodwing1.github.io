@@ -1,0 +1,14 @@
+# Picture of the day
+#
+# image: path of the currently featured photo (must match a `path` in gallery.yml).
+# note:  short thought shown next to the settings — only while this photo is featured.
+#        Write "" to show no note.
+# past:  photos that were picture of the day before, newest first.
+#        They stay pinned to the top of the Archive page.
+#
+# To rotate: move the current `image` path to the top of `past`, set the new
+# `image`, and write a fresh `note`.
+
+image: "/assets/WebPics2/MBS_4720.webp"
+note: ""
+past: []

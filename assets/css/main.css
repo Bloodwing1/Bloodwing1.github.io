@@ -124,6 +124,14 @@ h1 {
 .featured { padding: clamp(3.5rem, 8vw, 7.5rem) 0; }
 .featured .eyebrow { margin-bottom: 1.5rem; }
 
+.featured__caption {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(12rem, .65fr);
+  gap: .85rem 2rem;
+}
+.featured__note { color: var(--muted); font-style: italic; }
+.featured__note .eyebrow { margin-bottom: .25rem; font-style: normal; }
+
 .photograph { min-width: 0; }
 
 .photo-trigger {
@@ -342,6 +350,7 @@ h1 {
   .gallery { padding: 3.25rem 0 5rem; }
   .gallery-row { flex-direction: column; gap: 0; }
   .photograph + .photograph { margin-top: 4rem; }
+  .featured__caption { grid-template-columns: 1fr; }
   .site-footer { display: block; }
   .site-footer span { display: block; }
   .site-footer span + span { margin-top: .35rem; }

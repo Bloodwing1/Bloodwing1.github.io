@@ -11,8 +11,8 @@ layout: default
         <nav class="pager" aria-label="Gallery pages">
           {% assign pid = page.page_id %}
           <a href="{{ "/" | relative_url }}" {% if pid == "today" %}aria-current="page"{% endif %}>01 &mdash; Today</a>
-          <a href="{{ "/archive/" | relative_url }}" {% if pid == "archive-2026" %}aria-current="page"{% endif %}>02 &mdash; Archive 2026</a>
-          <a href="{{ "/archive-2/" | relative_url }}" {% if pid == "archive-2025" %}aria-current="page"{% endif %}>03 &mdash; Archive 2025</a>
+          <a href="{{ "/archive/" | relative_url }}" {% if pid == "archive-2026" %}aria-current="page"{% endif %}>02 &mdash; Archive</a>
+          <a href="{{ "/archive-2/" | relative_url }}" {% if pid == "archive-2025" %}aria-current="page"{% endif %}>03 &mdash; Archive 2</a>
         </nav>
         {% assign images = site.data[page.data_source].images %}
         {% if page.data_source == "gallery" %}

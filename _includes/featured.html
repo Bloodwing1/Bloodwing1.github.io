@@ -1,17 +1,13 @@
 <section class="featured" aria-label="Picture of the day">
   <p class="eyebrow">Picture of the day</p>
-  {% assign fpath = site.data.gallery.featured %}
-  {% assign fimg = site.data.gallery.images | where: "path", fpath | first %}
-  {% unless fimg %}
-    {% assign fimg = site.data.gallery.images | first %}
-    {% assign fnum = site.data.archive.images.size | plus: 1 %}
-  {% else %}
-    {% for image in site.data.gallery.images %}
-      {% if image.path == fpath %}
-        {% assign fnum = forloop.index | plus: site.data.archive.images.size %}
-      {% endif %}
-    {% endfor %}
-  {% endunless %}
+  {% assign fdata = site.data.featured %}
+  {% assign fimg = site.data.gallery.images | where: "path", fdata.image | first %}
+  {% unless fimg %}{% assign fimg = site.data.gallery.images | first %}{% endunless %}
+  {% assign fnum = 0 %}
+  {% for image in site.data.gallery.images %}
+    {% if image.path == fimg.path %}{% assign fnum = forloop.index | plus: site.data.archive.images.size %}{% endif %}
+  {% endfor %}
+  {% assign fnote = fdata.note | default: "" %}
   <article class="photograph">
     <button
       class="photo-trigger"
@@ -36,40 +32,48 @@
         <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
       </span>
     </button>
-    <div class="photograph__caption">
-      <div class="photograph__identity">
-        <span class="photograph__number">{{ fnum | prepend: '0' | slice: -2, 2 }}</span>
-        <div>
-          <h2>{{ fimg.title }}</h2>
-          <p>{{ fimg.description }}</p>
+    <div class="photograph__caption{% if fnote != "" %} featured__caption{% endif %}">
+      <div{% if fnote != "" %} class="featured__main"{% endif %}>
+        <div class="photograph__identity">
+          <span class="photograph__number">{{ fnum | prepend: '0' | slice: -2, 2 }}</span>
+          <div>
+            <h2>{{ fimg.title }}</h2>
+            <p>{{ fimg.description }}</p>
+          </div>
         </div>
+        <dl class="capture-details">
+          <div class="capture-details__exposure">
+            <dt>Settings</dt>
+            <dd>{{ fimg.settings.aperture }} <span>/</span> {{ fimg.settings.shutter_speed }} <span>/</span> {{ fimg.settings.iso }} <span>/</span> {{ fimg.settings.focal_length }}{% if fimg.settings.film %} <span>/</span> {{ fimg.settings.film }}{% endif %}</dd>
+          </div>
+          <div>
+            <dt>Camera</dt>
+            <dd>{{ fimg.camera.model }}</dd>
+          </div>
+          <div>
+            <dt>Lens</dt>
+            <dd>{{ fimg.camera.lens }}</dd>
+          </div>
+          {% if fimg.camera.sensor %}
+            <div>
+              <dt>Sensor</dt>
+              <dd>{{ fimg.camera.sensor }}</dd>
+            </div>
+          {% endif %}
+          {% if fimg.date %}
+            <div>
+              <dt>Date</dt>
+              <dd>{{ fimg.date }}</dd>
+            </div>
+          {% endif %}
+        </dl>
       </div>
-      <dl class="capture-details">
-        <div class="capture-details__exposure">
-          <dt>Settings</dt>
-          <dd>{{ fimg.settings.aperture }} <span>/</span> {{ fimg.settings.shutter_speed }} <span>/</span> {{ fimg.settings.iso }} <span>/</span> {{ fimg.settings.focal_length }}{% if fimg.settings.film %} <span>/</span> {{ fimg.settings.film }}{% endif %}</dd>
+      {% if fnote != "" %}
+        <div class="featured__note">
+          <p class="eyebrow">Thoughts</p>
+          <p>{{ fnote }}</p>
         </div>
-        <div>
-          <dt>Camera</dt>
-          <dd>{{ fimg.camera.model }}</dd>
-        </div>
-        <div>
-          <dt>Lens</dt>
-          <dd>{{ fimg.camera.lens }}</dd>
-        </div>
-        {% if fimg.camera.sensor %}
-          <div>
-            <dt>Sensor</dt>
-            <dd>{{ fimg.camera.sensor }}</dd>
-          </div>
-        {% endif %}
-        {% if fimg.date %}
-          <div>
-            <dt>Date</dt>
-            <dd>{{ fimg.date }}</dd>
-          </div>
-        {% endif %}
-      </dl>
+      {% endif %}
     </div>
   </article>
 </section>

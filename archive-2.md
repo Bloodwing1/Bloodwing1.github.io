@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "Archive 2025"
+title: "Archive 2"
 permalink: /archive-2/
 data_source: archive
 page_id: archive-2025

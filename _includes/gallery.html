@@ -48,8 +48,8 @@
   {% assign total = pcount | plus: ocount %}
   {% for n in (1..total) %}
     {% if pi < pcount and oi < ocount %}
-      {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
       {% assign seq = seq | push: partners[oi] %}{% assign oi = oi | plus: 1 %}
+      {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
     {% elsif pi < pcount %}
       {% assign seq = seq | push: portraits[pi] %}{% assign pi = pi | plus: 1 %}
     {% else %}

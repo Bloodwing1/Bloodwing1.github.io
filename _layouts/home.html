@@ -9,8 +9,10 @@ layout: default
       <h1>{{ site.title }}</h1>
       <div class="masthead__side">
         <nav class="pager" aria-label="Gallery pages">
-          <a href="{{ "/" | relative_url }}" {% unless page.permalink == "/archive/" %}aria-current="page"{% endunless %}>01 &mdash; Current</a>
-          <a href="{{ "/archive/" | relative_url }}" {% if page.permalink == "/archive/" %}aria-current="page"{% endif %}>02 &mdash; Archive</a>
+          {% assign pid = page.page_id %}
+          <a href="{{ "/" | relative_url }}" {% if pid == "today" %}aria-current="page"{% endif %}>01 &mdash; Today</a>
+          <a href="{{ "/archive/" | relative_url }}" {% if pid == "archive-2026" %}aria-current="page"{% endif %}>02 &mdash; Archive 2026</a>
+          <a href="{{ "/archive-2/" | relative_url }}" {% if pid == "archive-2025" %}aria-current="page"{% endif %}>03 &mdash; Archive 2025</a>
         </nav>
         {% assign images = site.data[page.data_source].images %}
         {% if page.data_source == "gallery" %}

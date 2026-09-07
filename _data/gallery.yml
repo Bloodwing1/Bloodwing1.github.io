@@ -1,4 +1,8 @@
-# Page 1 — current set (images in assets/WebPics2)
+# Page: picture of the day
+# Copy the `path` of any image below into this line to feature it on the front page.
+featured: "/assets/WebPics2/MBS_4720.webp"
+
+# Page: archive 2026 (images in assets/WebPics2)
 images:
 
   - title: "I'm so Lucky :)"

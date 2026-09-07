@@ -1,0 +1,75 @@
+<section class="featured" aria-label="Picture of the day">
+  <p class="eyebrow">Picture of the day</p>
+  {% assign fpath = site.data.gallery.featured %}
+  {% assign fimg = site.data.gallery.images | where: "path", fpath | first %}
+  {% unless fimg %}
+    {% assign fimg = site.data.gallery.images | first %}
+    {% assign fnum = site.data.archive.images.size | plus: 1 %}
+  {% else %}
+    {% for image in site.data.gallery.images %}
+      {% if image.path == fpath %}
+        {% assign fnum = forloop.index | plus: site.data.archive.images.size %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+  <article class="photograph">
+    <button
+      class="photo-trigger"
+      type="button"
+      aria-haspopup="dialog"
+      aria-label="Open {{ fimg.title | escape }} in full size"
+      data-full-src="{{ fimg.path | relative_url }}"
+      data-title="{{ fimg.title | escape }}"
+      data-description="{{ fimg.description | escape }}"
+      data-exposure="{{ fimg.settings.aperture }} · {{ fimg.settings.shutter_speed }} · {{ fimg.settings.iso }} · {{ fimg.settings.focal_length }}"
+      data-camera="{{ fimg.camera.model | escape }}"
+      data-lens="{{ fimg.camera.lens | escape }}"
+      data-sensor="{{ fimg.camera.sensor | default: '' | escape }}"
+      data-date="{{ fimg.date | default: '' | escape }}">
+      <span class="photo-trigger__image-wrap">
+        <img
+          src="{{ fimg.path | relative_url }}"
+          alt="{{ fimg.title | escape }}"
+          width="{{ fimg.width }}"
+          height="{{ fimg.height }}"
+          decoding="async">
+        <span class="photo-trigger__view" aria-hidden="true">View image <span>↗</span></span>
+      </span>
+    </button>
+    <div class="photograph__caption">
+      <div class="photograph__identity">
+        <span class="photograph__number">{{ fnum | prepend: '0' | slice: -2, 2 }}</span>
+        <div>
+          <h2>{{ fimg.title }}</h2>
+          <p>{{ fimg.description }}</p>
+        </div>
+      </div>
+      <dl class="capture-details">
+        <div class="capture-details__exposure">
+          <dt>Settings</dt>
+          <dd>{{ fimg.settings.aperture }} <span>/</span> {{ fimg.settings.shutter_speed }} <span>/</span> {{ fimg.settings.iso }} <span>/</span> {{ fimg.settings.focal_length }}{% if fimg.settings.film %} <span>/</span> {{ fimg.settings.film }}{% endif %}</dd>
+        </div>
+        <div>
+          <dt>Camera</dt>
+          <dd>{{ fimg.camera.model }}</dd>
+        </div>
+        <div>
+          <dt>Lens</dt>
+          <dd>{{ fimg.camera.lens }}</dd>
+        </div>
+        {% if fimg.camera.sensor %}
+          <div>
+            <dt>Sensor</dt>
+            <dd>{{ fimg.camera.sensor }}</dd>
+          </div>
+        {% endif %}
+        {% if fimg.date %}
+          <div>
+            <dt>Date</dt>
+            <dd>{{ fimg.date }}</dd>
+          </div>
+        {% endif %}
+      </dl>
+    </div>
+  </article>
+</section>

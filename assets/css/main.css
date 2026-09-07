@@ -121,6 +121,9 @@ h1 {
 
 .gallery-row:last-child { margin-bottom: 0; }
 
+.featured { padding: clamp(3.5rem, 8vw, 7.5rem) 0; }
+.featured .eyebrow { margin-bottom: 1.5rem; }
+
 .photograph { min-width: 0; }
 
 .photo-trigger {

@@ -45,8 +45,13 @@ still very much in test phase
    ```
 
    - **Keep 4-space indents exactly like the entries above — spaces, never tabs**
-   - The number under the photo (19, 20, …) is automatic: it's the position in
-     this file + 9 (the archive-2 set). Don't write it anywhere.
+   - Oldest photos live at the top of this file, newest at the bottom.
+     The number under each photo is automatic: its position in this file.
+     Never write the number anywhere.
+   - Archive pages hold **10 photos** each. `/archive/` always shows the newest
+     ones; older photos slide back to `/archive-2/`, `/archive-3/`, …
+     Pages up to Archive 4 (40 photos) already exist — ask me to add more
+     beyond that.
    - Panoramas: add `wide: true` (aligned under `path:`) to give them a
      full-width row
 
@@ -59,8 +64,8 @@ still very much in test phase
      - "/assets/WebPics2/previous-potd.webp"   # newest first
    ```
 
-   The current + past featured photos pin themselves to the top of the Archive
-   page. The note only shows while the photo is featured.
+   The current + past featured photos pin themselves to the top of the newest
+   Archive page. The note only shows while the photo is featured.
 
 6. **Check locally:** open `preview.html` (and `preview-archive.html`) in the
    browser, Ctrl+F5 to refresh.
@@ -69,6 +74,18 @@ still very much in test phase
    If the site doesn't update after ~10 minutes, push an empty commit
    (`git commit --allow-empty -m "Trigger Pages rebuild"` + push) — the Pages
    build sometimes misses a push.
+
+## Dumping many photos at once
+
+Convert a whole folder in one go (writes the WebPs straight into the site):
+
+```
+& "C:\Program Files\ImageMagick-7.1.2-Q16-HDRI\magick.exe" mogrify -path "C:\Users\huber\Desktop\Bloodwing1.github.io-main\Bloodwing1.github.io-main\assets\WebPics2" -auto-orient -resize "2400x2400>" -quality 80 -define webp:method=6 "C:\Users\huber\Desktop\Images for page 2\*.jpg"
+```
+
+Then add one block per photo to `_data/gallery.yml` (order them oldest to
+newest, newest must be at the bottom). For big dumps just tell me — batch
+converting and wiring the YAML entries is exactly the kind of thing to hand over.
 
 
 ## Wishlist

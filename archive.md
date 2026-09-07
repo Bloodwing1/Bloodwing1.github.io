@@ -2,9 +2,9 @@
 layout: home
 title: "Archive"
 permalink: /archive/
-data_source: gallery
-page_id: archive-2026
+page_id: archive
+chunk: 1
 ---
 
-{% assign images = site.data[page.data_source].images %}
-{% include gallery.html images=images offset=site.data.archive.images.size featured_first=true %}
+{% assign images = site.data.gallery.images %}
+{% include gallery.html images=images chunk=1 featured_first=true %}

@@ -10,27 +10,35 @@ layout: default
       <div class="masthead__side">
         <nav class="pager" aria-label="Gallery pages">
           {% assign pid = page.page_id %}
+          {% assign images = site.data.gallery.images %}
           <a href="{{ "/" | relative_url }}" {% if pid == "today" %}aria-current="page"{% endif %}>01 &mdash; Today</a>
-          <a href="{{ "/archive/" | relative_url }}" {% if pid == "archive-2026" %}aria-current="page"{% endif %}>02 &mdash; Archive</a>
-          <a href="{{ "/archive-2/" | relative_url }}" {% if pid == "archive-2025" %}aria-current="page"{% endif %}>03 &mdash; Archive 2</a>
+          {% assign total_chunks = images.size | plus: 9 | divided_by: 10 %}
+          {% for c in (1..total_chunks) %}
+            {% if c == 1 %}
+              <a href="{{ "/archive/" | relative_url }}" {% if page.chunk == 1 %}aria-current="page"{% endif %}>02 &mdash; Archive</a>
+            {% else %}
+              {% assign label_num = c | plus: 1 | prepend: '0' | slice: -2, 2 %}
+              <a href="{{ "/archive-" | append: c | append: "/" | relative_url }}" {% if page.chunk == c %}aria-current="page"{% endif %}>{{ label_num }} &mdash; Archive {{ c }}</a>
+            {% endif %}
+          {% endfor %}
         </nav>
-        {% assign images = site.data[page.data_source].images %}
         {% if page.page_id == "today" %}
           {% assign fimg = site.data.gallery.images | where: "path", site.data.featured.image | first %}
           {% unless fimg %}{% assign fimg = site.data.gallery.images | first %}{% endunless %}
           {% assign fnum = 0 %}
-          {% for image in site.data.gallery.images %}
-            {% if image.path == fimg.path %}{% assign fnum = forloop.index | plus: site.data.archive.images.size %}{% endif %}
+          {% for image in images %}
+            {% if image.path == fimg.path %}{% assign fnum = forloop.index %}{% endif %}
           {% endfor %}
           <p class="masthead__index">Picture of the day<br>No. {{ fnum | prepend: '0' | slice: -2, 2 }}</p>
         {% else %}
-          {% if page.data_source == "gallery" %}
-            {% assign first_number = site.data.archive.images.size | plus: 1 %}
-          {% else %}
-            {% assign first_number = 1 %}
+          {% assign k = page.chunk | default: 1 %}
+          {% assign skip = k | minus: 1 | times: 10 %}
+          {% assign last_number = images.size | minus: skip %}
+          {% if last_number >= 1 %}
+            {% assign first_number = last_number | minus: 9 %}
+            {% if first_number < 1 %}{% assign first_number = 1 %}{% endif %}
+            <p class="masthead__index">Selected photographs<br>{{ first_number | prepend: '0' | slice: -2, 2 }}&mdash;{{ last_number | prepend: '0' | slice: -2, 2 }}</p>
           {% endif %}
-          {% assign last_number = first_number | plus: images.size | minus: 1 %}
-          <p class="masthead__index">Selected photographs<br>{{ first_number | prepend: '0' | slice: -2, 2 }}&mdash;{{ last_number | prepend: '0' | slice: -2, 2 }}</p>
         {% endif %}
       </div>
     </div>

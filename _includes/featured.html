@@ -5,7 +5,7 @@
   {% unless fimg %}{% assign fimg = site.data.gallery.images | first %}{% endunless %}
   {% assign fnum = 0 %}
   {% for image in site.data.gallery.images %}
-    {% if image.path == fimg.path %}{% assign fnum = forloop.index | plus: site.data.archive.images.size %}{% endif %}
+    {% if image.path == fimg.path %}{% assign fnum = forloop.index %}{% endif %}
   {% endfor %}
   {% assign fnote = fdata.note | default: "" %}
   <article class="photograph">

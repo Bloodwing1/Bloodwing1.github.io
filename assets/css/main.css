@@ -126,8 +126,8 @@ h1 {
 
 .featured__caption {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(12rem, .65fr);
-  gap: .85rem 2rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(13rem, .8fr);
+  gap: .85rem 2.2rem;
 }
 .featured__note { color: var(--muted); font-style: italic; }
 .featured__note .eyebrow { margin-bottom: .25rem; font-style: normal; }

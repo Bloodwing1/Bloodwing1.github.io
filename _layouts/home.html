@@ -15,13 +15,23 @@ layout: default
           <a href="{{ "/archive-2/" | relative_url }}" {% if pid == "archive-2025" %}aria-current="page"{% endif %}>03 &mdash; Archive 2</a>
         </nav>
         {% assign images = site.data[page.data_source].images %}
-        {% if page.data_source == "gallery" %}
-          {% assign first_number = site.data.archive.images.size | plus: 1 %}
+        {% if page.page_id == "today" %}
+          {% assign fimg = site.data.gallery.images | where: "path", site.data.featured.image | first %}
+          {% unless fimg %}{% assign fimg = site.data.gallery.images | first %}{% endunless %}
+          {% assign fnum = 0 %}
+          {% for image in site.data.gallery.images %}
+            {% if image.path == fimg.path %}{% assign fnum = forloop.index | plus: site.data.archive.images.size %}{% endif %}
+          {% endfor %}
+          <p class="masthead__index">Picture of the day<br>No. {{ fnum | prepend: '0' | slice: -2, 2 }}</p>
         {% else %}
-          {% assign first_number = 1 %}
+          {% if page.data_source == "gallery" %}
+            {% assign first_number = site.data.archive.images.size | plus: 1 %}
+          {% else %}
+            {% assign first_number = 1 %}
+          {% endif %}
+          {% assign last_number = first_number | plus: images.size | minus: 1 %}
+          <p class="masthead__index">Selected photographs<br>{{ first_number | prepend: '0' | slice: -2, 2 }}&mdash;{{ last_number | prepend: '0' | slice: -2, 2 }}</p>
         {% endif %}
-        {% assign last_number = first_number | plus: images.size | minus: 1 %}
-        <p class="masthead__index">Selected photographs<br>{{ first_number | prepend: '0' | slice: -2, 2 }}&mdash;{{ last_number | prepend: '0' | slice: -2, 2 }}</p>
       </div>
     </div>
     <p class="masthead__note">A small collection of observed places, passing weather, and the things in between.</p>

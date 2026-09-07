@@ -9,6 +9,6 @@
 # To rotate: move the current `image` path to the top of `past`, set the new
 # `image`, and write a fresh `note`.
 
-image: "/assets/WebPics2/MBS_4720.webp"
+image: "/assets/WebPics2/MBS_7640.webp"
 note: ""
 past: []

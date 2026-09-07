@@ -138,3 +138,18 @@ images:
     camera:
       model: "Sprocket Rocket"
       lens: "Built in"
+
+  - title: "Hasengäßle"
+    path: "/assets/WebPics2/MBS_7640.webp"
+    description: "Text to come."
+    date: "2026-09-06"
+    width: 2400
+    height: 1602
+    settings:
+      aperture: "f/3.5"
+      shutter_speed: "4s"
+      iso: "ISO 1600"
+      focal_length: "15mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-D FA 15-30mm F2.8"

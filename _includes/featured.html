@@ -38,7 +38,12 @@
           <span class="photograph__number">{{ fnum | prepend: '0' | slice: -2, 2 }}</span>
           <div>
             <h2>{{ fimg.title }}</h2>
-            <p>{{ fimg.description }}</p>
+            <div class="photograph__desc-row">
+              <p>{{ fimg.description }}</p>
+              {% if fdata.meme_gif %}
+                <img class="photograph__desc-gif" src="{{ fdata.meme_gif | relative_url }}" alt="" width="480" height="360" decoding="async">
+              {% endif %}
+            </div>
           </div>
         </div>
         <dl class="capture-details">

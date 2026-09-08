@@ -199,6 +199,9 @@ h1 {
 
 .photograph__identity p { margin-bottom: 0; color: var(--muted); font-size: .84rem; line-height: 1.35; }
 
+.photograph__desc-row { display: flex; align-items: center; gap: .45rem; }
+.photograph__desc-gif { height: 1.8rem; width: auto; border-radius: .25rem; flex: none; }
+
 .capture-details,
 .lightbox__metadata {
   display: grid;

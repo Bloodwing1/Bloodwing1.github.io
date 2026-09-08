@@ -67,13 +67,30 @@ still very much in test phase
    The current + past featured photos pin themselves to the top of the newest
    Archive page. The note only shows while the photo is featured.
 
-6. **Check locally:** open `preview.html` (and `preview-archive.html`) in the
-   browser, Ctrl+F5 to refresh.
+6. **Check locally:** make sure the server is running (double-click `serve.bat`
+   if the console isn't open), then open `http://localhost:4000` and press F5.
+   Every file save rebuilds the site automatically.
 
-7. **Go live:** push `main` to GitHub — or just ask me to do it.
-   If the site doesn't update after ~10 minutes, push an empty commit
-   (`git commit --allow-empty -m "Trigger Pages rebuild"` + push) — the Pages
-   build sometimes misses a push.
+7. **Go live** — in PowerShell, inside the site folder
+   (`cd C:\Users\huber\Desktop\Bloodwing1.github.io-main\Bloodwing1.github.io-main`):
+
+   ```
+   git add -A
+   git commit -m "Add new photo"
+   git push origin main
+   ```
+
+   GitHub rebuilds the live site within ~2 minutes. If `bloodwing1.github.io`
+   still looks old after 10 minutes, run `git commit --allow-empty -m "Trigger
+   Pages rebuild"` and `git push origin main` again — the Pages build
+   sometimes misses a push.
+
+**Where do the camera settings come from?** Lightroom shows them in the
+EXIF panel — or run this and read the output:
+
+```
+& "C:\Program Files\ImageMagick-7.1.2-Q16-HDRI\magick.exe" "C:\Users\huber\Desktop\Images for page 2\MBS_XXXX.jpg" -format "camera=%[EXIF:Model]|lens=%[EXIF:LensModel]|aperture=%[EXIF:FNumber]|shutter=%[EXIF:ExposureTime]|iso=%[EXIF:PhotographicSensitivity]|focal=%[EXIF:FocalLength]|date=%[EXIF:DateTimeOriginal]" info:
+```
 
 ## Dumping many photos at once
 

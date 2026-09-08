@@ -8,6 +8,7 @@
 # To rotate: move the current `image` path to the top of `past`, set the new
 # `image`, and write a fresh `note`.
 
-image: "/assets/WebPics2/MBS_7640.webp"
-note: "This is a 'cooked' image of a night scene. i am experimenting with a LR preset to get this effect. on another note. thats not dust on your screen. those are stars :)"
-past: []
+image: "/assets/WebPics2/MBS_6830.webp"
+note: ""
+past:
+  - "/assets/WebPics2/MBS_7640.webp"

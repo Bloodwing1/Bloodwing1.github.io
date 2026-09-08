@@ -282,4 +282,19 @@ images:
     camera:
       model: "Pentax-K1 Mark II"
       lens: "HD Pentax-D FA 15-30mm F2.8"
+
+  - title: "MBS_6830"
+    path: "/assets/WebPics2/MBS_6830.webp"
+    description: "Text to come."
+    date: "2026-08-01"
+    width: 2400
+    height: 1920
+    settings:
+      aperture: "f/16"
+      shutter_speed: "20s"
+      iso: "ISO 125"
+      focal_length: "35mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "HD Pentax-FA 35mm F2"
 # Page 2 — archive (images in assets/WebPics)

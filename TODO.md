@@ -10,7 +10,13 @@
    absolute image URL in the page's <head> (one fixed og-image file; per-day
    dynamic image possible later). Bonus: point Instagram-like preview bots
    at an og:image sized ~1200x630.
-5. thinking about adding lightroom presets
+6. **Lightbox inspect/zoom**: current lightbox shows the same 2400px webp as
+   the grid, so "inspect" is barely bigger. Plan (my pick): wheel zoom + drag
+   pan (Google-Photos style, ~medium vanilla JS in default.html) + a second
+   higher-res webp (~3500-4000px, 1.5-3MB) loaded only in the lightbox so
+   zooming stays sharp. Alternatives: simple 2x click-toggle, or a mouse
+   loupe (no touch support).
+6b. **Lightroom presets** — thinking about adding them (renumbered)
 
 Not urgent reminders:
 - `serve.bat` = the local live-preview server (localhost:4000, F5 to refresh)

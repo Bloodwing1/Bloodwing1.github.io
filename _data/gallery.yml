@@ -297,4 +297,20 @@ images:
     camera:
       model: "Pentax-K1 Mark II"
       lens: "HD Pentax-FA 35mm F2"
+
+  - title: "Squirrel!"
+    path: "/assets/WebPics2/MBS_6535.webp"
+    description: "Snacking"
+    date: "2025-05-13"
+    width: 2350
+    height: 2350
+    settings:
+      aperture: "f/5.6"
+      shutter_speed: "1/500s"
+      iso: "ISO 4500"
+      focal_length: "300mm"
+    camera:
+      model: "Pentax-K1 Mark II"
+      lens: "Tamron 70-300mm F4.5"
+
 # Page 2 — archive (images in assets/WebPics)

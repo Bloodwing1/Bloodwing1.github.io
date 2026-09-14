@@ -8,8 +8,7 @@
 # To rotate: move the current `image` path to the top of `past`, set the new
 # `image`, and write a fresh `note`.
 
-image: "/assets/WebPics2/MBS_6830.webp"
-note: "long exposure shot with a nd1000 and polarizing filter"
-meme_gif: "/assets/marge-neat.gif" # tiny gif shown next to the description (delete this line to remove it)
+image: "/assets/WebPics2/MBS_6535.webp"
+note: "hi"
 past:
-  - "/assets/WebPics2/MBS_7640.webp"
+  - "/assets/WebPics2/MBS_6830.webp"

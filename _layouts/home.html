@@ -29,7 +29,7 @@ layout: default
           {% for image in images %}
             {% if image.path == fimg.path %}{% assign fnum = forloop.index %}{% endif %}
           {% endfor %}
-          <p class="masthead__index">Picture of the day<br>No. {{ fnum | prepend: '0' | slice: -2, 2 }}</p>
+          <p class="masthead__index">Featured<br><span id="featured-number">No. {{ fnum | prepend: '0' | slice: -2, 2 }}</span></p>
         {% else %}
           {% assign k = page.chunk | default: 1 %}
           {% assign skip = k | minus: 1 | times: 10 %}

@@ -6,6 +6,7 @@ _site
 .DS_Store
 _preview.html
 _ai-usage-preview.html
+_featured-preview.html
 preview.html
 preview-archive.html
 preview-archive2.htmlserve.bat

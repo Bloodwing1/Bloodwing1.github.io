@@ -1,14 +1,14 @@
-# Picture of the day
+# Featured photo
 #
-# image: path of the currently featured photo (must match a `path` in gallery.yml).
-# note:  Write whatever you want between the quotes, or note: "" to show nothing:
-# past:  photos that were picture of the day before, newest first.
-#        They stay pinned to the top of the Archive page.
+# Rotation is automatic now: JavaScript in _includes/featured.html picks one
+# random photo from the whole archive (gallery.yml) every day and shuffles
+# through all of them before repeating any. No manual edits needed.
 #
-# To rotate: move the current `image` path to the top of `past`, set the new
-# `image`, and write a fresh `note`.
+# note:     optional "Thoughts" text shown next to the featured photo. It is
+#           static, so only write something that fits any photo (or leave "").
+# meme_gif: optional tiny gif shown next to the description.
+# past:     photos pinned to the top of the Archive page (manual, newest first).
 
-image: "/assets/WebPics2/MBS_6535.webp"
-note: "hi"
+note: ""
 past:
   - "/assets/WebPics2/MBS_6830.webp"

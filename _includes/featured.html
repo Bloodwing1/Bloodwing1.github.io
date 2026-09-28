@@ -1,12 +1,8 @@
-<section class="featured" aria-label="Picture of the day">
-  <p class="eyebrow">Picture of the day</p>
+<section class="featured" id="featured" aria-label="Featured photo">
+  <p class="eyebrow">Featured</p>
   {% assign fdata = site.data.featured %}
-  {% assign fimg = site.data.gallery.images | where: "path", fdata.image | first %}
-  {% unless fimg %}{% assign fimg = site.data.gallery.images | first %}{% endunless %}
-  {% assign fnum = 0 %}
-  {% for image in site.data.gallery.images %}
-    {% if image.path == fimg.path %}{% assign fnum = forloop.index %}{% endif %}
-  {% endfor %}
+  {% assign fimg = site.data.gallery.images | first %}
+  {% assign fnum = 1 %}
   {% assign fnote = fdata.note | default: "" %}
   <article class="photograph">
     <button
@@ -53,24 +49,20 @@
           </div>
           <div>
             <dt>Camera</dt>
-            <dd>{{ fimg.camera.model }}</dd>
+            <dd data-field="camera">{{ fimg.camera.model }}</dd>
           </div>
           <div>
             <dt>Lens</dt>
-            <dd>{{ fimg.camera.lens }}</dd>
+            <dd data-field="lens">{{ fimg.camera.lens }}</dd>
           </div>
-          {% if fimg.camera.sensor %}
-            <div>
-              <dt>Sensor</dt>
-              <dd>{{ fimg.camera.sensor }}</dd>
-            </div>
-          {% endif %}
-          {% if fimg.date %}
-            <div>
-              <dt>Date</dt>
-              <dd>{{ fimg.date }}</dd>
-            </div>
-          {% endif %}
+          <div data-field-row="sensor"{% unless fimg.camera.sensor %} hidden{% endunless %}>
+            <dt>Sensor</dt>
+            <dd data-field="sensor">{{ fimg.camera.sensor }}</dd>
+          </div>
+          <div data-field-row="date"{% unless fimg.date %} hidden{% endunless %}>
+            <dt>Date</dt>
+            <dd data-field="date">{{ fimg.date }}</dd>
+          </div>
         </dl>
       </div>
       {% if fnote != "" %}
@@ -81,4 +73,99 @@
       {% endif %}
     </div>
   </article>
+
+  <script id="featured-data" type="application/json">{{ site.data.gallery.images | jsonify }}</script>
+  <script>
+    (() => {
+      const payload = document.getElementById('featured-data');
+      const root = document.getElementById('featured');
+      if (!payload || !root) return;
+
+      let images;
+      try { images = JSON.parse(payload.textContent); } catch (e) { return; }
+      if (!images.length) return;
+
+      // One slot per UTC day. Each cycle of `n` days gets its own seeded
+      // shuffle, so the order is random but nothing repeats until every
+      // photo has been featured once. Same photo for all visitors.
+      const n = images.length;
+      const day = Math.floor(Date.now() / 86400000);
+      const cycle = Math.floor(day / n);
+      const slot = day % n;
+
+      const shuffledOrder = (c) => {
+        let seed = (c * 0x9E3779B9) >>> 0;
+        const rand = () => {
+          seed = (seed + 0x6D2B79F5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+        const order = Array.from({ length: n }, (_, i) => i);
+        for (let i = n - 1; i > 0; i--) {
+          const j = Math.floor(rand() * (i + 1));
+          [order[i], order[j]] = [order[j], order[i]];
+        }
+        return order;
+      };
+
+      const order = shuffledOrder(cycle);
+      if (cycle > 0) {
+        // avoid the same photo on consecutive days across a cycle boundary
+        const prev = shuffledOrder(cycle - 1);
+        if (prev[n - 1] === order[0]) {
+          [order[0], order[1]] = [order[1], order[0]];
+        }
+      }
+
+      const pickIndex = order[slot];
+      const pick = images[pickIndex];
+      if (!pick || pickIndex === 0) return; // index 0 is the server-rendered default
+
+      const esc = (v) => String(v == null ? '' : v).replace(/[&<>"]/g, (c) => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
+      ));
+
+      const q = (sel) => root.querySelector(sel);
+      const trigger = q('.photo-trigger');
+      trigger.setAttribute('aria-label', 'Open ' + pick.title + ' in full size');
+      trigger.dataset.fullSrc = pick.path;
+      trigger.dataset.title = pick.title;
+      trigger.dataset.description = pick.description;
+      const s = pick.settings || {};
+      const parts = [s.aperture, s.shutter_speed, s.iso, s.focal_length].filter(Boolean);
+      if (s.film) parts.push(s.film);
+      trigger.dataset.exposure = parts.join(' · ');
+      const cam = pick.camera || {};
+      trigger.dataset.camera = cam.model || '';
+      trigger.dataset.lens = cam.lens || '';
+      trigger.dataset.sensor = cam.sensor || '';
+      trigger.dataset.date = pick.date || '';
+
+      const img = q('.photo-trigger img');
+      img.src = pick.path;
+      img.alt = pick.title || '';
+      if (pick.width) img.width = pick.width;
+      if (pick.height) img.height = pick.height;
+
+      q('.photograph__number').textContent = String(pickIndex + 1).padStart(2, '0');
+      q('.photograph__identity h2').textContent = pick.title || '';
+      q('.photograph__desc-row p').textContent = pick.description || '';
+
+      q('.capture-details__exposure dd').innerHTML = parts.map(esc).join(' <span>/</span> ');
+      q('[data-field="camera"]').textContent = cam.model || '';
+      q('[data-field="lens"]').textContent = cam.lens || '';
+
+      const sensorRow = q('[data-field-row="sensor"]');
+      sensorRow.hidden = !cam.sensor;
+      if (cam.sensor) q('[data-field="sensor"]').textContent = cam.sensor;
+
+      const dateRow = q('[data-field-row="date"]');
+      dateRow.hidden = !pick.date;
+      if (pick.date) q('[data-field="date"]').textContent = pick.date;
+
+      const mastheadNumber = document.getElementById('featured-number');
+      if (mastheadNumber) mastheadNumber.textContent = 'No. ' + String(pickIndex + 1).padStart(2, '0');
+    })();
+  </script>
 </section>
